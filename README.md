@@ -7,7 +7,7 @@ Refer to main.ipynb for plots and figures about our current progress:
 - [x] Data generation with PSOLA autotune algorithm
 - [ ] Binary classifier with Convolutional Neural Networks
 - [ ] Training pipeline
-- [ ] Analysis of results\\
+- [ ] Analysis of results<br/>
 Setup Instructions:
 ```
 pip install
