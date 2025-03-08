@@ -4,3 +4,8 @@ matplotlib
 soundfile
 scipy
 psola
+soundfile
+sounddevice
+silero_vad
+crepe
+tensorflow
