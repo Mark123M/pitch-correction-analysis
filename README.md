@@ -1,5 +1,7 @@
 # pitch-correction-analysis
 Setup Instructions:
-```pip install
+```
+pip install
 conda install -c conda-forge ffmpeg libsndfile
-pip install spleeter```
+pip install spleeter
+```
