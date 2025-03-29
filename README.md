@@ -1,14 +1,13 @@
 # pitch-correction-analysis
 Refer to main.ipynb for plots and figures about our current progress:
-* Vocal stems extraction
-* Fundamental frequency tracking
-* Spectrogram + pitch contour plots
-* Data generation with segmented plots
-* Data generation with PSOLA autotune algorithm
-Next Steps:
-* Binary classifier with Convolutional Neural Networks
-* Training pipeline
-* Analysis of results
+- [x] Vocal stems extraction
+- [x] Fundamental frequency tracking
+- [x] Spectrogram + pitch contour plots
+- [x] Data generation with segmented plots
+- [x] Data generation with PSOLA autotune algorithm
+- [ ] Binary classifier with Convolutional Neural Networks
+- [ ] Training pipeline
+- [ ] Analysis of results<br/><br/>
 Setup Instructions:
 ```
 pip install
