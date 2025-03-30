@@ -174,3 +174,5 @@ image_data
 
 .venv_model
 *_data
+
+env_name
