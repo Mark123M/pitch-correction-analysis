@@ -1,17 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import scipy.fft
-import soundfile as sf
-import sounddevice as sd
 import librosa.display
-from spleeter.separator import Separator
-from functools import partial
-import scipy.signal as sig
-from pathlib import Path
 import os
 import crepe
-from scipy.io import wavfile
-import tensorflow as tf
 # Generating All Datasets
 # Auto_Tuned_Vocal_is.wav
 # Auto_Tuned_Vocal.wav
@@ -46,7 +37,7 @@ data = [('image_data/training/autotuned/autotuned', training_autotuned), ('image
         ('image_data/test/autotuned/autotuned', test_autotuned), ('image_data/test/original/original', test_original)]
 
 for path, dataset in data:
-    for i in range(5):
+    for i in range(len(dataset)):
         file = dataset[i]
         Y, fs = librosa.load(file)
 
