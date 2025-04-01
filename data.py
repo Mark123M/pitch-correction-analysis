@@ -1,17 +1,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import scipy.fft
-import soundfile as sf
-import sounddevice as sd
 import librosa.display
-from spleeter.separator import Separator
-from functools import partial
-import scipy.signal as sig
-from pathlib import Path
 import os
 import crepe
-from scipy.io import wavfile
-import tensorflow as tf
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.utils.data as data
+from torch.optim import lr_scheduler
+import torch.backends.cudnn as cudnn
+import matplotlib.pyplot as plt
+import time
+import os
+import numpy as np
+from PIL import Image
+from tempfile import TemporaryDirectory
 # Generating All Datasets
 # Auto_Tuned_Vocal_is.wav
 # Auto_Tuned_Vocal.wav
@@ -30,23 +33,23 @@ test_original = []
 for root, dirs, files in os.walk('vocal_data/training'):
     for file in files:
         path = os.path.join(root, file)
-        if file == 'Auto_Tuned_Vocal_is.wav' or file == 'Auto_Tuned_Vocal.wav' or file == 'Auto_Tuned.wav':
+        if file == 'Auto_Tuned.wav':
             training_autotuned.append(path)
-        elif file == 'Original_Vocal_is.wav' or file == 'Original_Vocal.wav' or file == 'Original.wav':
+        elif file == 'Original.wav':
             training_original.append(path)
 for root, dirs, files in os.walk('vocal_data/test'):
     for file in files:
         path = os.path.join(root, file)
-        if file == 'Auto_Tuned_Vocal_is.wav' or file == 'Auto_Tuned_Vocal.wav' or file == 'Auto_Tuned.wav':
+        if file == 'Auto_Tuned.wav':
             test_autotuned.append(path)
-        elif file == 'Original_Vocal_is.wav' or file == 'Original_Vocal.wav' or file == 'Original.wav':
+        elif file == 'Original.wav':
             test_original.append(path)
 
-data = [('image_data/training/autotuned/autotuned', training_autotuned), ('image_data/training/original/original', training_original),
-        ('image_data/test/autotuned/autotuned', test_autotuned), ('image_data/test/original/original', test_original)]
+data = [('image_data2/training/autotuned/autotuned', training_autotuned), ('image_data2/training/original/original', training_original),
+        ('image_data2/test/autotuned/autotuned', test_autotuned), ('image_data2/test/original/original', test_original)]
 
 for path, dataset in data:
-    for i in range(5):
+    for i in range(len(dataset)):
         file = dataset[i]
         Y, fs = librosa.load(file)
 

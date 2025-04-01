@@ -170,7 +170,9 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 vocal_data
-image_data
+image_data*
 
 .venv_model
 *_data
+
+env_name
