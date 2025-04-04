@@ -6,7 +6,6 @@ import crepe
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.utils.data as data
 from torch.optim import lr_scheduler
 import torch.backends.cudnn as cudnn
 import matplotlib.pyplot as plt
@@ -48,31 +47,29 @@ for root, dirs, files in os.walk('vocal_data/test'):
 data = [('image_data2/training/autotuned/autotuned', training_autotuned), ('image_data2/training/original/original', training_original),
         ('image_data2/test/autotuned/autotuned', test_autotuned), ('image_data2/test/original/original', test_original)]
 
-for path, dataset in data:
-    for i in range(len(dataset)):
-        file = dataset[i]
-        Y, fs = librosa.load(file)
+file = 'Viva_La_Vida_Coldplay/Coldplay - Viva La Vida.mp3'
+Y, fs = librosa.load(file)
 
-        # Dataset Generation
-        seg_len = 10 * fs
-        segs = [Y[j:j + seg_len] for j in range(0, len(Y), seg_len)]
-        #f0_segs = [frequency[i:i + len(frequency) // len(segs)] for i in range(0, len(frequency), len(frequency) // len(segs))]
+# Dataset Generation
+seg_len = 10 * fs
+segs = [Y[j:j + seg_len] for j in range(0, len(Y), seg_len)]
+#f0_segs = [frequency[i:i + len(frequency) // len(segs)] for i in range(0, len(frequency), len(frequency) // len(segs))]
 
-        # Convert segments to mel-spectrograms
-        mel_spectrograms = []
-        for k in range(len(segs)):
-            s = segs[k]
-            print(path, file, i, k)
-            time, frequency, confidence, activation = crepe.predict(s, fs, viterbi=True)
-            mel_spec = librosa.feature.melspectrogram(y=s, sr=fs, n_fft=2048, hop_length=1024, n_mels=128)
-            mel_spectrograms.append(mel_spec)
+# Convert segments to mel-spectrograms
+mel_spectrograms = []
+for k in range(len(segs)):
+    s = segs[k]
+    #print(path, file, i, k)
+    time, frequency, confidence, activation = crepe.predict(s, fs, viterbi=True)
+    mel_spec = librosa.feature.melspectrogram(y=s, sr=fs, n_fft=2048, hop_length=1024, n_mels=128)
+    mel_spectrograms.append(mel_spec)
 
-            # Plot and save
-            plt.figure(figsize=(4, 4))
-            librosa.display.specshow(librosa.power_to_db(mel_spec, ref=np.max), sr=fs, hop_length=1024, y_axis="mel", x_axis="time")
+    # Plot and save
+    plt.figure(figsize=(4, 4))
+    librosa.display.specshow(librosa.power_to_db(mel_spec, ref=np.max), sr=fs, hop_length=1024, y_axis="mel", x_axis="time")
 
-            # Save figure
-            plt.axis('off')
-            plt.plot(time, frequency, label='Pitch (Hz)', color='w')
-            plt.savefig(f"{path}_{i}_{k}.png", dpi=300, bbox_inches='tight', pad_inches = 0)
-            plt.close()
+    # Save figure
+    plt.axis('off')
+    plt.plot(time, frequency, label='Pitch (Hz)', color='w')
+    plt.savefig(f"Viva_La_Vida_Coldplay/plots/plot_{k}.png", dpi=300, bbox_inches='tight', pad_inches = 0)
+    plt.close()
