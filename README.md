@@ -5,9 +5,9 @@ Refer to main.ipynb for plots and figures about our current progress:
 - [x] Spectrogram + pitch contour plots
 - [x] Data generation with segmented plots
 - [x] Data generation with PSOLA autotune algorithm
-- [ ] Binary classifier with Convolutional Neural Networks
-- [ ] Training pipeline
-- [ ] Analysis of results<br/><br/>
+- [x] Binary classifier with Convolutional Neural Networks
+- [x] Training pipeline
+- [x] Analysis of results<br/><br/>
 Setup Instructions:
 ```
 pip install
