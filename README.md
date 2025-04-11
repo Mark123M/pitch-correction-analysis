@@ -1,4 +1,4 @@
-# pitch-correction-analysis
+# autotune-classifier
 Refer to main.ipynb for plots and figures about our current progress:
 - [x] Vocal stems extraction
 - [x] Fundamental frequency tracking
